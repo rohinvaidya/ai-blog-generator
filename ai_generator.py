@@ -1,21 +1,22 @@
-def generatePrompt(prompt, model="gpt-3.5-turbo", temperature=0.7):
-    """
-    Generates a response from the AI model based on the provided prompt.
-    
-    Args:
-        prompt (str): The input prompt for the AI model.
-        model (str): The model to use for generation (default: "gpt-3.5-turbo").
-        temperature (float): Controls the randomness of the output (default: 0.7).
-    
-    Returns:
-        str: The generated response from the AI model.
-    """
-    import openai
+import os
+from openai import OpenAI, openai
+
+
+client = OpenAI(
+    api_key = os.environ.get("OPENAI_API_KEY", ""),
+)
+
+def generatePrompt(prompt):
 
     response = openai.ChatCompletion.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=temperature
+        model="models/gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "user", 
+                "content": "Generate a detailed SEO report for the following keyword: " + prompt
+            }
+            ],
+        temperature=0.7
     )
     
     return response.choices[0].message.content.strip()

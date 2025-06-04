@@ -15,8 +15,8 @@ def get_data():
     if not metrics:
         return jsonify({"error": "No metrics found for the keyword"}), 404
     else:
-        output = f"<h1>{keyword}</h1>" + jsonify(metrics).get_data(as_text=True)
-        return output
+        # output = f"<h1>{keyword}</h1>" + jsonify(metrics).get_data(as_text=True)
+        return render_template('blog_post.html', keyword=keyword, metrics=metrics)
 
 if __name__ == '__main__':
     app.run(debug=True)

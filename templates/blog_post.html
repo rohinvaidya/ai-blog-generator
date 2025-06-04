@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}   
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Welcome to the AI-Powered Blog Post Generator App!</h1>
+        <p class="lead">This application is built on the Python Flask framework.</p>
+    </div>
+
+    <hr/>
+
+    <div class="jumbotron text-center">
+        <h2>Generated Blog Post</h2>
+         <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-large">Keyword</span>
+            <input type="text" id="keyword" class="form-control" value="{{keyword}}" disabled />
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Metrics</span>
+            <textarea class="form-control" aria-label="With textarea" rows="10" disabled>{{ metrics }}</textarea>
+        </div>
+
+        
+        <input type="button" id="homeBtn" value="Home" class="btn btn-primary"/>
+        <script>
+            document.getElementById('homeBtn').addEventListener('click', function() {
+                const keyword = document.getElementById('keyword').value;
+                window.location.href = '/';
+            });
+        </script>
+    </div>
+{% endblock %}

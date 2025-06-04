@@ -1,4 +1,4 @@
-
+import json
 
 def returnMetricsForKeyword(keyword):
     """
@@ -23,6 +23,20 @@ def saveMetricsToFile(metrics, filename='metrics.json'):
         metrics (dict): The metrics to save.
         filename (str): The name of the file to save the metrics to.
     """
-    import json
+    # Read existing data if file exists
+    try:
+        with open(filename, 'r') as f:
+            data = json.load(f)
+            if not isinstance(data, list):
+                data = []
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = []
+
+    # Append the new metrics to the existing data
+    data.append(metrics)
+
+    # Save the updated data back to the file as a single JSON array
     with open(filename, 'w') as f:
-        json.dump(metrics, f, indent=4)
+        json.dump(data, f, indent=2)
+
+    print(f"Metrics saved to {filename}")
