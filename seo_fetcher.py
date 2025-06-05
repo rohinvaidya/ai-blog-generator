@@ -1,6 +1,6 @@
 import json
 
-def returnMetricsForKeyword(keyword):
+def fetchMetrics(keyword):
     """
     This function is a placeholder for fetching SEO metrics for a given keyword.
     It currently returns a hardcoded dictionary with example metrics.
@@ -15,6 +15,7 @@ def returnMetricsForKeyword(keyword):
         "keyword_difficulty": 0.75,
         "avg_cpc": 1.50,
     }
+    
     saveMetricsToFile(metrics)
     
     return json.dumps(metrics, indent=2)

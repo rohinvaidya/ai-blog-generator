@@ -1,10 +1,16 @@
 import os
+import dotenv
 from openai import OpenAI
 from openai.types.chat import ChatCompletionSystemMessageParam, ChatCompletionUserMessageParam
 
+# Load environment variables from .env file
+dotenv.load_dotenv()
+
+# Load the OpenAI API key from the environment
+api_key = os.environ.get("OPENAI_API_KEY", "")
 
 client = OpenAI(
-    api_key = os.environ.get("OPENAI_API_KEY", ""),
+    api_key = api_key,
 )
 
 def sendDummyRequest():
@@ -28,7 +34,7 @@ def generatePrompt(keyword: str) -> str:
     )
 
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # or "gpt-4"
+        model="gpt-3.5-turbo",
         messages=[system_message, user_message],
         temperature=0.7,
         max_tokens=600,
@@ -49,10 +55,10 @@ def generatePrompt(keyword: str) -> str:
     # Return the generated blog content 
     return blog_content
 
-def save_blog_as_html(keyword: str, blog_content: str, metrics: str, output_dir: str = ".") -> str:
+def save_blog_as_html(keyword: str, blog_content: str, metrics: str, output_dir: str = ".") -> None:
     """
     Given a keyword and the blog content, generate a simple HTML file
-    and save it to the specified output directory. Returns the file path.
+    and save it to the specified output directory.
     """
     # Sanitize keyword for filename (replace spaces with underscores)
     safe_name = "_".join(keyword.lower().split())
@@ -87,5 +93,5 @@ def save_blog_as_html(keyword: str, blog_content: str, metrics: str, output_dir:
     # Write to file
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(html_content)
-
-    return filepath
+    
+    print(f"Blog post saved to {filepath}")

@@ -1,30 +1,36 @@
-from flask import Flask, request, render_template, jsonify
-from seo_fetcher import returnMetricsForKeyword
-from ai_generator import sendDummyRequest, generatePrompt, save_blog_as_html
-from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
+from flask import Flask, request, render_template, jsonify
+from seo_fetcher import fetchMetrics
+from ai_generator import generatePrompt, save_blog_as_html
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 app.app_context().push()
 
 def job():
-    keyword = "wireless earbuds"
-    content = sendDummyRequest()  # Replace with actual function to generate content
-    print(f"Generated content for '{keyword}': {content}")
+    keyword = "software engineering"
+    metrics = fetchMetrics(keyword)
+    content = generatePrompt(keyword)
+    print(f"Running scheduled job for keyword: {keyword}")
     
-    # Optionally, you can save the content to a local file
-    with open(f"{keyword.replace(' ', '_')}_content.txt", "w") as f:
-        f.write(content) 
+    if not metrics:
+        print(f"No metrics found for keyword '{keyword}'. Skipping HTML generation.")
+    else:
+        save_blog_as_html(keyword, content, metrics)
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    keywords = [
+        { "id" : 1, "name": "wireless earbuds" },
+        { "id" : 2, "name": "best headphones" },
+        { "id" : 3, "name": "smartphone accessories" }]
+    
+    return render_template('home.html', keywords = keywords)
 
 @app.route('/generate', methods=['GET'])
 def get_data():
     keyword = request.args.get('keyword', 'default_keyword')
-    metrics = returnMetricsForKeyword(keyword)
-    # content = sendDummyRequest()
+    metrics = fetchMetrics(keyword)
     content = generatePrompt(keyword)
 
     if not metrics:
@@ -36,8 +42,7 @@ def get_data():
 if __name__ == '__main__':
     scheduler = BackgroundScheduler()
     try:
-        # scheduler.add_job(job, 'interval', days=1, start_date=datetime.now(), id='daily_job', replace_existing=True)
-        # scheduler.add_job(job, 'interval', seconds=60, start_date=datetime.now(), id='daily_job', replace_existing=True)
+        scheduler.add_job(job, 'interval', days=1, start_date=datetime.now(), id='daily_job', replace_existing=True)
         print("Scheduler started. Job will run once a day.")
         scheduler.start()
     except (KeyboardInterrupt, SystemExit):

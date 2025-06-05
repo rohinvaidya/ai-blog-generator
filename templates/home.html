@@ -1,26 +1,57 @@
 {% extends 'layout.html' %}   
 {% block body %}
     <div class="jumbotron text-center">
-        <h1>Welcome to BlogSpark: the AI-Powered Blog Post Generator App!</h1>
-        <p class="lead">This application is built on the Python Flask framework.</p>
+        <h1>Welcome to BlogSpark!</h1>
+        <p class="lead">The AI-Powered Blog Post Generator App!</p>
     </div>
 
-    <hr/>
+    <hr class="border border-primary border-3 opacity-75">
 
     <div class="jumbotron text-center">
-        <h2>Generate Blog Post</h2>
-        <p class="lead">Click the button to generate a blog post based on the keyword you enter.</p>
+        <h2>Generate a Blog Post</h2>
         <!-- <a href="/generate?keyword=test" >Generate</a> -->
          <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Enter keyword</span>
             <input type="text" id="keyword" class="form-control" aria-label="Generate Text" aria-describedby="inputGroup-sizing-default">
         </div>
-        <input type="button" id="generateBtn" value="Generate" class="btn btn-primary"/>
+
+        <div class="list-group">
+            <li class="list-group-item active" aria-current="true">Common Keywords</li>
+            {% for item in keywords %}
+              <button type="button" id="{{ item.id }}" class="list-group-item list-group-item-action">{{ item.name }}</button>
+              <script>
+                document.getElementById('{{ item.id }}').addEventListener('click', function() {
+                    const keyword = document.getElementById('{{ item.id }}').innerHTML;
+                    window.location.href = `/generate?keyword=${encodeURIComponent(keyword)}`;
+                });
+            </script>
+           {% endfor %}
+        </div>
+
+        <input type="button" id="generateBtn" value="Generate" class="btn btn-primary mt-3"/>
         <script>
             document.getElementById('generateBtn').addEventListener('click', function() {
                 const keyword = document.getElementById('keyword').value;
                 window.location.href = `/generate?keyword=${encodeURIComponent(keyword)}`;
             });
         </script>
+    </div>
+
+    <div class="container" style="margin-top: 20px;">
+        <div class="card" style="margin-top: 20px;">
+            <h5 class="card-header">How to use BlogSpark</h5>
+            <div class="card-body">
+                <h5 class="card-title">Instructions</h5>
+                <p class="card-text">To use this application, simply enter a keyword in the input field above and click "Generate". The application will then create a blog post and display it along with its metrics.</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h5 class="card-header">About</h5>
+            <div class="card-body">
+                <h5 class="card-title">What is BlogSpark?</h5>
+                <p class="card-text">This application uses the OpenAI API to generate blog posts based on a keyword you provide. It also analyzes the content and provides metrics such as word count, reading time, and sentiment analysis.</p>
+            </div>
+        </div>
     </div>
 {% endblock %}

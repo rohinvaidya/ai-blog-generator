@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogSpark</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="jumbotron text-center">
+        <h1>Welcome to BlogSpark!</h1>
+        <p class="lead">The AI-Powered Blog Post Generator App!</p>
+        </div>
+
+        <hr/>
+
+        <div class="jumbotron text-center">
+            <h2>Generated Blog Post</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-large">Keyword</span>
+                <input type="text" id="keyword" class="form-control" value="software engineering" disabled />
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Post</span>
+                <textarea class="form-control" style="field-sizing: content;" aria-label="With textarea" rows="10" disabled>Software engineering is the backbone of our digital world, encompassing the design, development, testing, and maintenance of software applications. It combines creativity with technical aptitude to create efficient, user-friendly, and reliable software solutions that power our everyday lives.
+
+One of the key principles of software engineering is the systematic approach to problem-solving. Engineers analyze user requirements, design a solution, write code to implement it, and rigorously test the software to ensure it functions as intended. This iterative process, often referred to as the software development life cycle, allows for continuous improvement and refinement of the final product.
+
+Collaboration is another vital aspect of software engineering. Teams of engineers work together, leveraging their individual strengths to tackle complex projects. Communication and teamwork are essential to ensure that everyone is aligned on goals, timelines, and technical approaches.
+
+Continuous learning is a core value in software engineering. Technologies evolve rapidly, so engineers must stay updated on the latest tools, languages, and methodologies to deliver cutting-edge solutions. This mindset of lifelong learning keeps software engineers adaptable and innovative in a fast-paced industry.
+
+Quality assurance is paramount in software engineering. Thorough testing and debugging processes are implemented to identify and fix any issues before the software is deployed to users. This dedication to quality ensures that software is reliable, secure, and user-friendly.
+
+In conclusion, software engineering is a dynamic field that combines technical expertise, creativity, collaboration, continuous learning, and a commitment to quality. It is the driving force behind the digital innovations that shape our modern world.
+
+</textarea>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Metrics</span>
+                <textarea class="form-control" aria-label="With textarea" rows="10" disabled>{
+  "keyword": "software engineering",
+  "search_volume": 1000,
+  "keyword_difficulty": 0.75,
+  "avg_cpc": 1.5
+}</textarea>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
