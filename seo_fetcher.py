@@ -5,7 +5,10 @@ def returnMetricsForKeyword(keyword):
     This function is a placeholder for fetching SEO metrics for a given keyword.
     It currently returns a hardcoded dictionary with example metrics.
     """
-    # Example metrics for demonstration purposes
+    if "default_keyword" == keyword:
+        return None
+    
+    # Mock metrics for demonstration purposes
     metrics = {
         "keyword": keyword,
         "search_volume": 1000,
@@ -13,7 +16,8 @@ def returnMetricsForKeyword(keyword):
         "avg_cpc": 1.50,
     }
     saveMetricsToFile(metrics)
-    return metrics
+    
+    return json.dumps(metrics, indent=2)
 
 def saveMetricsToFile(metrics, filename='metrics.json'):
     """

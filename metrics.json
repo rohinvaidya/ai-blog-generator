@@ -34,5 +34,59 @@
     "search_volume": 1000,
     "keyword_difficulty": 0.75,
     "avg_cpc": 1.5
+  },
+  {
+    "keyword": "meta",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
+  },
+  {
+    "keyword": "wired earphones",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
+  },
+  {
+    "keyword": "wireless earbuds",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
+  },
+  {
+    "keyword": "wireless earbuds",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
+  },
+  {
+    "keyword": "Tesla",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
+  },
+  {
+    "keyword": "BlogSpark",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
+  },
+  {
+    "keyword": "Beats by Dr.Dre",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
+  },
+  {
+    "keyword": "meta",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
+  },
+  {
+    "keyword": "Instagram",
+    "search_volume": 1000,
+    "keyword_difficulty": 0.75,
+    "avg_cpc": 1.5
   }
 ]

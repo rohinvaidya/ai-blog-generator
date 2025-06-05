@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}   
 {% block body %}
     <div class="jumbotron text-center">
-        <h1>Welcome to the AI-Powered Blog Post Generator App!</h1>
+        <h1>Welcome to BlogSpark: the AI-Powered Blog Post Generator App!</h1>
         <p class="lead">This application is built on the Python Flask framework.</p>
     </div>
 
@@ -15,10 +15,14 @@
         </div>
 
         <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Post</span>
+            <textarea class="form-control" aria-label="With textarea" rows="10" disabled>{{ content }}</textarea>
+        </div>
+
+        <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Metrics</span>
             <textarea class="form-control" aria-label="With textarea" rows="10" disabled>{{ metrics }}</textarea>
         </div>
-
         
         <input type="button" id="homeBtn" value="Home" class="btn btn-primary"/>
         <script>

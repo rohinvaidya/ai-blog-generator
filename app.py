@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from seo_fetcher import returnMetricsForKeyword
-from ai_generator import sendDummyRequest  # Assuming this is your function to generate content
+from ai_generator import sendDummyRequest, generatePrompt, save_blog_as_html
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
 
@@ -24,19 +24,22 @@ def index():
 def get_data():
     keyword = request.args.get('keyword', 'default_keyword')
     metrics = returnMetricsForKeyword(keyword)
+    # content = sendDummyRequest()
+    content = generatePrompt(keyword)
+
     if not metrics:
         return jsonify({"error": "No metrics found for the keyword"}), 404
     else:
-        return render_template('blog_post.html', keyword=keyword, metrics=metrics)
+        save_blog_as_html(keyword, content, metrics)
+        return render_template('blog_post.html', keyword=keyword, metrics=metrics, content=content)
 
 if __name__ == '__main__':
+    scheduler = BackgroundScheduler()
     try:
-        scheduler = BackgroundScheduler()
         # scheduler.add_job(job, 'interval', days=1, start_date=datetime.now(), id='daily_job', replace_existing=True)
-        scheduler.add_job(job, 'interval', seconds=5, start_date=datetime.now(), id='daily_job', replace_existing=True)
+        # scheduler.add_job(job, 'interval', seconds=60, start_date=datetime.now(), id='daily_job', replace_existing=True)
         print("Scheduler started. Job will run once a day.")
         scheduler.start()
     except (KeyboardInterrupt, SystemExit):
         scheduler.shutdown()
-    app.run(debug=True)
-   
+    app.run(debug=True)   
