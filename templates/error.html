@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}   
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Welcome to BlogSpark!</h1>
+        <p class="lead">The AI-Powered Blog Post Generator App!</p>
+    </div>
+
+    <hr class="border border-primary border-3 opacity-75">
+
+    <div class="card text-bg-danger mb-3 mx-auto text-center">
+        <div class="card-header">Error {{ errorCode }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ errorMessage }}</h5>
+            <a href="/" class="btn btn-primary justify-center">Home</a>
+        </div>
+    </div>    
+
+{% endblock %}

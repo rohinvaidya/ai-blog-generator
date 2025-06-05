@@ -33,8 +33,12 @@ def get_data():
     metrics = fetchMetrics(keyword)
     content = generatePrompt(keyword)
 
+    if not keyword:
+        return render_template('error.html', errorCode=400, errorMessage="Keyword is required")
     if not metrics:
-        return jsonify({"error": "No metrics found for the keyword"}), 404
+        return render_template('error.html', errorCode=404, errorMessage="No metrics found for the keyword")
+    if content == "":
+        return render_template('error.html', errorCode=500, errorMessage="System Error: Content generation failed")
     else:
         save_blog_as_html(keyword, content, metrics)
         return render_template('blog_post.html', keyword=keyword, metrics=metrics, content=content)

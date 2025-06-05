@@ -18,6 +18,8 @@ def sendDummyRequest():
 
 def generatePrompt(keyword: str) -> str:
 
+    if not keyword:
+        return ""
 
     system_message = ChatCompletionSystemMessageParam(
         role="system",
