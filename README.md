@@ -26,7 +26,7 @@ A tool to generate blog posts using AI.
 
 4. **Run the application**
     ```bash
-    python app.py
+    python app.py --interval daily
     ```
 
 ## Requirements
@@ -39,10 +39,10 @@ A tool to generate blog posts using AI.
 
 ## Usage
 
-### 1. To generate a blog post, run the application and follow the instructions:
+### 1. To generate a blog post, run the application and start the scheduler automatically, follow the instructions:
 
 ```bash
-python app.py
+python app.py --interval daily
 ```
 
 You will be asked to enter a topic or keyword for your blog post. The AI will then generate and display the blog content based on your input.

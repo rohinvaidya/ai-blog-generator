@@ -286,5 +286,11 @@
     "search_volume": 1000,
     "keyword_difficulty": 0.75,
     "avg_cpc": 1.5
+  },
+  {
+    "keyword": "",
+    "search_volume": 93861,
+    "keyword_difficulty": 0.9,
+    "avg_cpc": 9.7
   }
 ]
