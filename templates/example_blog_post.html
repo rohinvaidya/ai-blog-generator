@@ -1,41 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlogSpark</title>
+    <title>KeywordGenAI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
+<body class="bg-info-subtle text-info-emphasis">
 
-    <div class="container">
+    <div class="container mt-3">
 
         <div class="jumbotron text-center">
-        <h1>Welcome to BlogSpark!</h1>
+        <h1>Welcome to KeywordGenAI!</h1>
         <p class="lead">The AI-Powered Blog Post Generator App!</p>
         </div>
 
-        <hr/>
+        <hr class="border border-primary border-3 opacity-75"/>
 
         <div class="jumbotron text-center">
-            <h2>Generated Blog Post</h2>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-large">Keyword</span>
-                <input type="text" id="keyword" class="form-control" value="**keyword" disabled />
+                <span class="input-group-text" id="inputGroup-sizing-lg">Keyword</span>
+                <input type="text" id="keyword" class="form-control" value="**keyword" aria-describedby="inputGroup-sizing-lg" disabled />
             </div>
 
             <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Post</span>
-                <textarea class="form-control" style="field-sizing: content;" aria-label="With textarea" rows="10" disabled>**content</textarea>
+                <span class="input-group-text" id="inputGroup-sizing-default1">Post</span>
+                <textarea class="form-control" style="field-sizing: content;" aria-describedby="inputGroup-sizing-default1" rows="20" disabled>**content</textarea>
             </div>
 
             <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Metrics</span>
-                <textarea class="form-control" aria-label="With textarea" rows="10" disabled>**metrics</textarea>
+                <span class="input-group-text" id="inputGroup-sizing-default2">Metrics</span>
+                <textarea class="form-control" aria-describedby="inputGroup-sizing-default2" rows="6" disabled>**metrics</textarea>
             </div>
         </div>
     </div>
 
+    <footer class="text-center mt-5">
+        <p class="text-muted">&copy; 2025 KeywordGenAI. All rights reserved.</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

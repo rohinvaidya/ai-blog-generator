@@ -20,6 +20,17 @@ def generatePrompt(keyword: str) -> str:
 
     if not keyword:
         return ""
+    
+
+    outline = [
+        "Introduction to the topic",
+        "Key features and benefits",
+        "How it compares to competitors",
+        "User testimonials or reviews",
+        "Conclusion and call to action"
+    ]
+
+    skeleton = "\n\n".join(outline)
 
     system_message = ChatCompletionSystemMessageParam(
         role="system",
@@ -31,14 +42,21 @@ def generatePrompt(keyword: str) -> str:
 
     user_message = ChatCompletionUserMessageParam(
         role="user",
-        content=f"Please write a ~300-word blog post about \"{keyword}\". "
+        content=f"Write a ~300-word blog post about \"{keyword}\". "
                 "Make it informative, clear, and suitable for a general audience."
+                "Use the following outline as a skeleton for the blog post:\n\n"
+                f"{skeleton}\n\n"
+                "The blog post should contain 3 affliate links represented by placeholders: "
+                "{{AFF_LINK_1}}, {{AFF_LINK_2}}, {{AFF_LINK_3}}. "
+                "Do not remove or alter these placeholders. "
+                "Keep them exactly as written."
+                
     )
 
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[system_message, user_message],
-        temperature=0.7,
+        temperature=0.8,
         max_tokens=600,
     )
 
@@ -51,11 +69,26 @@ def generatePrompt(keyword: str) -> str:
     # Validate the length of the generated content
     if len(blog_content) < 300:
         raise ValueError("The generated blog content is too short. Please try again with a different keyword.")
+    
+    # Replace placeholders with dummy URLs
+    blog_content = replace_placeholders(blog_content)
 
     print(f"Generated blog content for keyword '{keyword}':\n{blog_content}\n")
     
     # Return the generated blog content 
     return blog_content
+
+def replace_placeholders(content: str) -> str:
+    """
+    Locate every {{AFF_LINK_n}} (n = 1..3) in the AI content
+    and replace it with a dummy URL like https://example.com/affiliate<n>.
+    """
+    final = content
+    for i in range(1,  4):  # Assuming 3 affiliate links
+        placeholder = f"{{{{AFF_LINK_{i}}}}}"
+        dummy_url = f"https://example.com/affiliate{i}"
+        final = final.replace(placeholder, dummy_url)
+    return final
 
 def save_blog_as_html(keyword: str, blog_content: str, metrics: str, output_dir: str = ".") -> None:
     """
@@ -86,6 +119,8 @@ def save_blog_as_html(keyword: str, blog_content: str, metrics: str, output_dir:
                 .replace(">", "&gt;")
         )
         body_html += f"{escaped.strip()}\n\n"
+
+    body_html = replace_placeholders(body_html)
 
     # Replace placeholders
     html_content = html_content.replace("**keyword", keyword)

@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}   
 {% block body %}
     <div class="jumbotron text-center">
-        <h1>Welcome to BlogSpark!</h1>
+        <h1>Welcome to KeywordGenAI!</h1>
         <p class="lead">The AI-Powered Blog Post Generator App!</p>
     </div>
 
@@ -10,7 +10,7 @@
     <div class="jumbotron text-center">
         <h2>Generate a Blog Post</h2>
          <div class="input-group mb-3">
-            <input type="text" id="keyword" class="form-control" aria-describedby="button-addon2" placeholder="Enter a keyword for your blog post">
+            <input type="text" id="keyword" aria-autocomplete="both" class="form-control" aria-describedby="button-addon2" placeholder="Enter a keyword for your blog post">
             <button class="btn btn-outline-secondary text-bg-primary" type="button" id="button-addon2">Generate</button>
         </div>
 
@@ -42,7 +42,7 @@
 
         <div class="container" style="margin-top: 20px;">
             <div class="card" style="margin-top: 20px;">
-                <h5 class="card-header">How to use BlogSpark</h5>
+                <h5 class="card-header">How to use KeywordGenAI</h5>
                 <div class="card-body">
                     <h5 class="card-title">Instructions</h5>
                     <p class="card-text">To use this application, simply enter a keyword in the input field above and click "Generate". The application will then create a blog post and display it along with its metrics.</p>
@@ -52,7 +52,7 @@
             <div class="card" style="margin-top: 20px;">
                 <h5 class="card-header">About</h5>
                 <div class="card-body">
-                    <h5 class="card-title">What is BlogSpark?</h5>
+                    <h5 class="card-title">What is KeywordGenAI?</h5>
                     <p class="card-text">This application uses the OpenAI API to generate blog posts based on a keyword you provide. It also analyzes the content and provides metrics such as word count, reading time, and sentiment analysis.</p>
                 </div>
             </div>
@@ -62,6 +62,13 @@
             document.getElementById('button-addon2').addEventListener('click', function() {
                 const keyword = document.getElementById('keyword').value;
                 window.location.href = `/generate?keyword=${encodeURIComponent(keyword)}`;
+            });
+            
+            document.getElementById('keyword').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    const keyword = document.getElementById('keyword').value;
+                    window.location.href = `/generate?keyword=${encodeURIComponent(keyword)}`;
+                }
             });
         </script>
     </div>

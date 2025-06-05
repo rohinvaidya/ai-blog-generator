@@ -44,12 +44,17 @@ A tool to generate blog posts using AI.
 ```bash
 python app.py --interval daily
 ```
+You can specify the following options to schedule the blog post draft for a pre-determined word.
+
+```
+Example: --interval daily, --interval hourly, --interval weekly, --interval none
+```
 
 You will be asked to enter a topic or keyword for your blog post. The AI will then generate and display the blog content based on your input.
 
 **Example:**
 ```
-Enter a topic for your blog post: The future of AI in healthcare
+Enter a keyword The future of AI in healthcare
 ```
 
 The generated blog post will be shown in the web browser. A copy of the generated blog post will also be saved to the `/articles` directory.

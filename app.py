@@ -17,7 +17,7 @@ def parse_args():
     """
     ap = argparse.ArgumentParser("run.py")
     
-    # Required parameter specifying what analysis to run
+    # Required parameter specifying for what interval the scheduler should run
     ap.add_argument('--interval', '-i', type=str, required=True,
                     help='The interval at which the job should run.'
                          'Example: --interval daily, --interval hourly, --interval weekly, --interval none')
@@ -78,4 +78,4 @@ if __name__ == '__main__':
     if not scheduler_status(job_scheduler):
         print("Scheduler is not running.")
     
-    app.run(debug=True)
+    app.run()
