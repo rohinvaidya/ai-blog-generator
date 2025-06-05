@@ -56,4 +56,4 @@ The generated blog post will be shown in the web browser. A copy of the generate
 
 ### 2. A daily scheduler will run in the background and generate a blog post about a pre-defined keyword (for example, `software engineering`) and save it to the `/articles` directory.
 
-### 3. Search Engine Optimization (SEO) metrics for the created post will be available on the generated blog post page.
+### 3. Search Engine Optimization (SEO) metrics for the entered keyword will be available on the generated blog post page.

@@ -1,4 +1,5 @@
 import json
+import random
 
 def fetchMetrics(keyword):
     """
@@ -9,11 +10,15 @@ def fetchMetrics(keyword):
         return None
     
     # Mock metrics for demonstration purposes
+    search_volume = random.randint(1_000, 100_000)
+    keyword_difficulty = round(random.uniform(0.0, 1.0), 1)
+    avg_cpc = round(random.uniform(0.10, 10.00), 2)
+
     metrics = {
         "keyword": keyword,
-        "search_volume": 1000,
-        "keyword_difficulty": 0.75,
-        "avg_cpc": 1.50,
+        "search_volume": search_volume,
+        "keyword_difficulty": keyword_difficulty,
+        "avg_cpc": avg_cpc,
     }
     
     saveMetricsToFile(metrics)
