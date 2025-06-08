@@ -11,6 +11,11 @@ A tool to generate blog posts using AI.
     ```
 
     **Note: Creation of a python virtual environment for this application is recommended.**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate         # On Windows, use `venv\Scripts\activate`
+    ```
+
 
 2. **Install dependencies**
     ```bash
