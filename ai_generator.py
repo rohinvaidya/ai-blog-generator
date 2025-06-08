@@ -1,5 +1,7 @@
 import os
 import dotenv
+import json
+from seo_fetcher import saveMetricsToFile
 from openai import OpenAI
 from openai.types.chat import ChatCompletionSystemMessageParam, ChatCompletionUserMessageParam
 
@@ -90,7 +92,7 @@ def replace_placeholders(content: str) -> str:
         final = final.replace(placeholder, dummy_url)
     return final
 
-def save_blog_as_html(keyword: str, blog_content: str, metrics: str, output_dir: str = ".") -> None:
+def save_blog_as_html(keyword: str, blog_content: str, metrics: dict, output_dir: str = ".") -> None:
     """
     Given a keyword and the blog content, generate a simple HTML file
     and save it to the specified output directory.
@@ -125,10 +127,14 @@ def save_blog_as_html(keyword: str, blog_content: str, metrics: str, output_dir:
     # Replace placeholders
     html_content = html_content.replace("**keyword", keyword)
     html_content = html_content.replace("**content", body_html)
-    html_content = html_content.replace("**metrics", metrics)
+    html_content = html_content.replace("**metrics", json.dumps(metrics, indent=2))
 
     # Write to file
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(html_content)
     
+    # Append the blog content to the JSON object
+    metrics["blog_html"] = html_content
+    saveMetricsToFile(metrics, filename='metrics.json')
+
     print(f"Blog post saved to {filepath}")

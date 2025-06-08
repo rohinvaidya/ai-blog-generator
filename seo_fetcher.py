@@ -21,9 +21,9 @@ def fetchMetrics(keyword):
         "avg_cpc": avg_cpc,
     }
     
-    saveMetricsToFile(metrics)
+    # saveMetricsToFile(metrics)
     
-    return json.dumps(metrics, indent=2)
+    return metrics
 
 def saveMetricsToFile(metrics, filename='metrics.json'):
     """

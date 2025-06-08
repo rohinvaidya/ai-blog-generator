@@ -1,13 +1,14 @@
 import argparse
-import apscheduler
 from flask import Flask, request, render_template
 from seo_fetcher import fetchMetrics
 from ai_generator import generatePrompt, save_blog_as_html
-from scheduler import initialize_scheduler, scheduler_status, shutdown_scheduler
+from scheduler import initialize_scheduler, scheduler_status
 
 app = Flask(__name__)
 app.app_context().push()
-job_scheduler = None
+
+# Use app.config to store the scheduler globally
+app.config['job_scheduler'] = None
 
 def parse_args():
     """
@@ -24,8 +25,6 @@ def parse_args():
     
     return ap.parse_args()
 
-# Parse feature to call from command line arguments
-args = parse_args()
 
 @app.route('/')
 def index():
@@ -72,10 +71,12 @@ def start_scheduler():
         return render_template('scheduler_status.html', statusMessage="Scheduler started successfully with interval: " + interval)
 
 if __name__ == '__main__':
+    args = parse_args()
     interval = args.interval.lower()
-    job_scheduler = initialize_scheduler(interval)
+    scheduler = initialize_scheduler(interval)
+    app.config['job_scheduler'] = scheduler  # Store in app.config for global access
     
-    if not scheduler_status(job_scheduler):
+    if not scheduler_status(scheduler):
         print("Scheduler is not running.")
     
     app.run()

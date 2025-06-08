@@ -13,6 +13,7 @@ def job():
         print(f"No metrics found for keyword '{keyword}'. Skipping HTML generation.")
     else:
         save_blog_as_html(keyword, content, metrics)
+        print(f"[{datetime.now()}] Generated scheduled post for “{keyword}")
 
 def initialize_scheduler(interval) -> BackgroundScheduler:
     scheduler = BackgroundScheduler()
